@@ -8,7 +8,8 @@ import pygame
 #button music
 pygame.mixer.init()
 def play():
-    pygame.mixer.music.load("C:\\Users\\NITRO5\\Downloads\\bsound.mp3")
+    # pygame.mixer.music.load("C:\\Users\\NITRO5\\Downloads\\bsound.mp3")
+    pygame.mixer.music.load("bsound.mp3")
     pygame.mixer.music.play(loops=0)
 
 #database
@@ -55,21 +56,21 @@ def insert_value():
     cpassword=cpass.get()
 
     if name=='' or last==''or emailid=='' or spassword=='' or phone1=='' or cpassword=='':
-        #  # messagebox.showinfo("fill the empty fiels!!")
+        messagebox.showinfo("fill the empty fiels!!")
         #  if spassword==cpassword:
         # #     messagebox.showinfo("password doesn't match")
 
-    else:
 
-     cur=con.cursor()
 
-     insert_stmt=(
+    cur=con.cursor()
+
+    insert_stmt=(
          "INSERT INTO registration(fname,lname,emailid,phone,password,c_password)"
          "VALUES (%s,%s,%s,%s,%s,%s)"
      )
-     data = (name, last, emailid, spassword, phone1,cpassword)
-     cur.execute(insert_stmt, data)
-     con.commit()
+    data = (name, last, emailid, spassword, phone1,cpassword)
+    cur.execute(insert_stmt, data)
+    con.commit()
 
 
 
