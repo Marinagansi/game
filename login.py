@@ -6,7 +6,7 @@ import pygame
 #button music
 pygame.mixer.init()
 def play():
-    pygame.mixer.music.load("C:\\Users\\NITRO5\\Downloads\\bsound.mp3")
+    pygame.mixer.music.load("bsound.mp3")
     pygame.mixer.music.play(loops=0)
 
 
