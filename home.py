@@ -5,7 +5,7 @@ from PIL import ImageTk,Image
 import pygame
 pygame.mixer.init()
 def play():
-    pygame.mixer.music.load("C:\\Users\\NITRO5\\Downloads\\bsound.mp3")
+    pygame.mixer.music.load("bsound.mp3")
     pygame.mixer.music.play(loops=0)
 #Main screen
 master = Tk()
