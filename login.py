@@ -24,7 +24,7 @@ cur=con.cursor()
 
 #Main screen
 root = Tk()
-root.title('Movie Ticketing System')
+root.title('404 NOT FOUND')
 root.geometry("637x688")
 root.resizable(0,0)
 root.geometry("637x688")
@@ -44,7 +44,7 @@ def goto_game():
 
 
 def login_verfication():
-    name = fullname.get()
+    name = username.get()
     password = userpass.get()
     sql="select * from registration where username=%s and password=%s"
     cur.execute(sql,[(name),(password)])
@@ -56,13 +56,13 @@ def login_verfication():
             goto_game()
             break
     else:
-        messagebox.showinfo("ivalid user name and password")
+        messagebox.showinfo("ivalid user name and password","error")
 
 def login():
 
-    global fullname
+    global username
     global userpass
-    fullname=StringVar()
+    username=StringVar()
     userpass=StringVar()
 
     load = Image.open("id icon.png")
@@ -78,7 +78,7 @@ def login():
     login_img = Image.open("loginbtn.png")
     login_img = ImageTk.PhotoImage(login_img)
 
-    username = Entry(root, bd=13, width=21,textvariable=fullname, relief=FLAT, font=('arial', 14, 'bold'), bg='#00437c', fg='turquoise3',
+    username = Entry(root, bd=13, width=21,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#00437c', fg='turquoise3',
                    highlightthickness=3)
     username.config(highlightbackground="white", highlightcolor="white")
     username.place(x=220, y=292)#292
@@ -86,14 +86,14 @@ def login():
     last = Entry(root, bd=13, width=21,textvariable=userpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#00437c', fg='white',
                  highlightthickness=3)
     last.config(highlightbackground="white", highlightcolor="white")
-    last.place(x=220, y=370)#370
+    last.place(x=220, y=370)
 
-    login_btn = Button(root, image=login_img, width=287, height=53, borderwidth=0, font=("arial", 14, 'bold'),
+    login_btn = Button(root, image=login_img, width=210, height=50, borderwidth=0, font=("arial", 14, 'bold'),
                        command=lambda: [play(),login_verfication()])
-    login_btn.place(x=200, y=510)
+    login_btn.place(x=215, y=490)
 
 
 
-root.mainloop()
+    root.mainloop()
 
 login()

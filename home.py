@@ -9,7 +9,7 @@ def play():
     pygame.mixer.music.play(loops=0)
 #Main screen
 master = Tk()
-master.title('Movie Ticketing System')
+master.title('404 NOT FOUND')
 
 master.geometry("639x698")
 master.resizable(0,0)

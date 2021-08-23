@@ -23,7 +23,7 @@ print("successful")
 cur=con.cursor()
 #Main screen
 root = Tk()
-root.title('Movie Ticketing System')
+root.title('404 NOT FOUND')
 root.geometry("637x688")
 root.resizable(0,0)
 root.geometry("638x689")
