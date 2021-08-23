@@ -19,6 +19,8 @@ img=Label(master,image=render)
 img.place(x=0,y=0)
 
 
+
+
 def goto_sign():
     master.destroy()
     os.system('python signuppage.py')

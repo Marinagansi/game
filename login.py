@@ -5,6 +5,16 @@ from PIL import ImageTk,Image
 import mysql.connector
 import pygame
 #button music
+def show_found_status(name,pw):
+    cur = con.cursor()
+    cur.execute("Select * from registration WHERE username=%s and password=%s",
+              (name, pw))
+    found = cur.fetchone()
+    if found:
+        return "account found"
+    else:
+        return "account not found"
+
 pygame.mixer.init()
 def play():
     pygame.mixer.music.load("bsound.mp3")
