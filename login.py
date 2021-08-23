@@ -46,7 +46,7 @@ def goto_game():
 def login_verfication():
     name = fullname.get()
     password = userpass.get()
-    sql="select * from registration where fname=%s and password=%s"
+    sql="select * from registration where username=%s and password=%s"
     cur.execute(sql,[(name),(password)])
     result=cur.fetchall()
 
@@ -91,14 +91,9 @@ def login():
     login_btn = Button(root, image=login_img, width=287, height=53, borderwidth=0, font=("arial", 14, 'bold'),
                        command=lambda: [play(),login_verfication()])
     login_btn.place(x=200, y=510)
-#==================================================
 
 
-<<<<<<< HEAD
-login_btn=Button(root,image=login_img,width=210,height=50,borderwidth=0,font=("arial",14,'bold'),command=lambda:[play(),goto_homepage()])
-login_btn.place(x=215,y=480)
-=======
-    root.mainloop()
->>>>>>> origin/main
+
+root.mainloop()
 
 login()
