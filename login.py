@@ -14,7 +14,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='Gansi@974111',
+                    password='20july4V',
                     port=3306,
                     database='login')
 print("successful")
@@ -65,7 +65,7 @@ last.place(x=220,y=292)
 
 
 
-login_btn=Button(root,image=login_img,width=287,height=53,borderwidth=0,font=("arial",14,'bold'),command=lambda:[play(),goto_homepage()])
-login_btn.place(x=200,y=510)
+login_btn=Button(root,image=login_img,width=210,height=50,borderwidth=0,font=("arial",14,'bold'),command=lambda:[play(),goto_homepage()])
+login_btn.place(x=215,y=480)
 
 root.mainloop()

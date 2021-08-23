@@ -16,7 +16,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='Gansi@974111',
+                    password='20july4V',
                     port=3306,
                     database='login')
 print("successful")
@@ -41,36 +41,42 @@ def goto_homepage():
 def insert_value():
     # database
 
-    # cur = con.cursor()
+
     # cur.execute("select * from record")
     # result = cur.fetchall()
     # for i in result:
     #     print(i)
-
-
     name=Name.get()
     last=Lname.get()
-    emailid=Email.get()
-    spassword=Password.get()
-    phone1=Phone.get()
-    cpassword=cpass.get()
-
-    if name=='' or last==''or emailid=='' or spassword=='' or phone1=='' or cpassword=='':
-        messagebox.showinfo("fill the empty fiels!!")
-        #  if spassword==cpassword:
-        # #     messagebox.showinfo("password doesn't match")
+    user=username.get()
+    emailid= Email.get()
+    spassword= Password.get()
+    cpassword= cpass.get()
 
 
+    if name=='' or last==''or emailid=='' or spassword=='' or user=='' or cpassword=='':
+        messagebox.showinfo("error","fill all details")
+    elif spassword!=cpassword:
+        messagebox.showinfo("error","password doesn't match")
+    elif name.isalpha()!=True or last.isalpha()!=True:
+        messagebox.showinfo("error", "enter only alphabets in first and last name")
+    elif user.isalnum() != True:
+        messagebox.showinfo("error", "enter alphaneumeric in username")
+    else:
+        cur = con.cursor()
+        insert_stmt=(
+            "INSERT INTO registration(fname,lname,username,emailid,password)"
+            "VALUES (%s,%s,%s,%s,%s)"
+            )
 
-    cur=con.cursor()
 
-    insert_stmt=(
-         "INSERT INTO registration(fname,lname,emailid,phone,password,c_password)"
-         "VALUES (%s,%s,%s,%s,%s,%s)"
-     )
-    data = (name, last, emailid, spassword, phone1,cpassword)
-    cur.execute(insert_stmt, data)
-    con.commit()
+        data=(name,last,user,emailid,spassword)
+        cur.execute(insert_stmt, data)
+        con.commit()
+        con.close()
+        messagebox.showinfo("hurray","signup successfull")
+        goto_homepage()
+
 
 
 
@@ -86,14 +92,14 @@ def signpage():
     global Lname
     global Email
     global Password
-    global Phone
+    global username
     global cpass
 
     Name=StringVar()
     Lname= StringVar()
     Email = StringVar()
     Password=StringVar()
-    Phone=StringVar()
+    username=StringVar()
     cpass=StringVar()
 
 
@@ -103,21 +109,21 @@ def signpage():
     lname = Entry(root, bd=8, width=21, textvariable=Lname,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
     lname.place(x=260, y=260)
 
-    email = Entry(root, bd=8, width=21,textvariable=Email, relief=FLAT, font=('arial', 14, 'bold'), bg='#00437c', fg='white')
-    email.place(x=260, y=310)
+    username = Entry(root, bd=8, width=21,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
+    username.place(x=260, y=310)
 
-    phone = Entry(root, bd=8, width=21, textvariable=Phone,relief=FLAT, font=('arial', 14, 'bold'), bg='#00437c', fg='white')
-    phone.place(x=260, y=360)
+    Email = Entry(root, bd=8, width=21, textvariable=Email,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
+    Email.place(x=260, y=360)
 
-    password = Entry(root, bd=8, width=21, textvariable=Password,relief=FLAT, font=('arial', 14, 'bold'), bg='#00437c', fg='white')
+    password = Entry(root, bd=8, width=21, textvariable=Password,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
     password.place(x=260, y=407)
 
-    c_password = Entry(root, bd=8, width=21,textvariable=cpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#00437c', fg='white')
+    c_password = Entry(root, bd=8, width=21,textvariable=cpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
     c_password.place(x=260, y=458)
 
-    sub_btn = Button(root, image=submit_img, borderwidth=0, command=lambda: [play(),  insert_value(),goto_homepage()],
-                     width=287, height=53, highlightthickness=3)
-    sub_btn.place(x=200, y=510)
+    sub_btn = Button(root, image=submit_img, borderwidth=0, command=lambda: [play(),  insert_value()],
+                     width=210, height=40, highlightthickness=3)
+    sub_btn.place(x=215, y=510)
 
 
     root.mainloop()
