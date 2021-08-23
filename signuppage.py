@@ -54,10 +54,11 @@ def insert_value():
     spassword=Password.get()
     phone1=Phone.get()
     cpassword=cpass.get()
-
-    if name=='' or last==''or emailid=='' or spassword=='' or phone1=='' or cpassword=='':
+    if name == '' or last == '' or emailid == '' or spassword == '' or phone1 == '' or cpassword == '':
         messagebox.showinfo("fill the empty fiels!!")
-        #  if spassword==cpassword:
+
+
+    #  if spassword==cpassword:
         # #     messagebox.showinfo("password doesn't match")
 
 
@@ -71,6 +72,7 @@ def insert_value():
     data = (name, last, emailid, spassword, phone1,cpassword)
     cur.execute(insert_stmt, data)
     con.commit()
+
 
 
 
