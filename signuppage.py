@@ -19,6 +19,7 @@ con= mysql.connector.connect(
                     password='20july4V',
                     port=3306,
                     database='login')
+
 print("successful")
 cur=con.cursor()
 #Main screen
@@ -33,9 +34,11 @@ ren=ImageTk.PhotoImage(pic)
 img=Label(root,image=ren)
 img.place(x=0,y=0)
 
+
 def goto_homepage():
     root.destroy()
     os.system('python home.py')
+
 
 
 def insert_value():

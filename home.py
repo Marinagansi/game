@@ -39,7 +39,6 @@ ca_img=ImageTk.PhotoImage(ca_img)
 
 
 
-
 #button
 std_login_btn=Button(master,image=sn_img,width=255,height=40,relief= FLAT, font=('arial',14,'bold'), bg='#00437c', fg='white',activebackground='#00437c',  command =lambda:[play(),goto_login()])
 std_login_btn.place(x=187,y=300)
