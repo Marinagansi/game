@@ -14,14 +14,14 @@ clock = pygame.time.Clock()
 FPS = 60
 
 # define game variables
-GRAVITY = 0.25
+GRAVITY = 0.5
 
 # define player action variables
 moving_left = False
 moving_right = False
 
 # define colours
-BG = (144, 201, 120)
+BG = (244, 81, 60)
 RED = (255, 0, 0)
 
 
