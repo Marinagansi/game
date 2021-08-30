@@ -4,7 +4,7 @@ import login
 
 class Test_loginCredential(unittest.TestCase):
     def test_set1(self):
-        status = login.show_found_status("vses", "haha")
+        status = login.show_found_status("slaxmi", "sita1")
         self.assertEqual(status, "account found")
     def test_set2(self):
         status = login.show_found_status("bb", "nn")

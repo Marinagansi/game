@@ -5,18 +5,56 @@ from  tkinter import  ttk
 import mysql.connector
 from tkinter import messagebox
 import pygame
+pygame.mixer.init()
+import time
+from itertools import count, cycle
+
+
+class ImageLabel(Label):
+    """
+    A Label that displays images, and plays them if they are gifs
+    :im: A PIL Image instance or a string filename
+    """
+    def load(self, im):
+        if isinstance(im, str):
+            im = Image.open(im)
+        frames = []
+        try:
+            for i in count(1):
+                frames.append(ImageTk.PhotoImage(im.copy()))
+                im.seek(i)
+        except EOFError:
+            pass
+        self.frames = cycle(frames)
+        try:
+            self.delay = im.info['duration']
+        except:
+            self.delay = 100
+        if len(frames) == 1:
+            self.config(image=next(self.frames))
+        else:
+            self.next_frame()
+    def unload(self):
+        self.config(image=None)
+        self.frames = None
+    def next_frame(self):
+        if self.frames:
+            self.config(image=next(self.frames))
+            self.after(self.delay, self.next_frame)
+
+
 #button music
 pygame.mixer.init()
 def play():
     # pygame.mixer.music.load("C:\\Users\\NITRO5\\Downloads\\bsound.mp3")
-    pygame.mixer.music.load("bsound.mp3")
+    pygame.mixer.music.load("tkimg\\bsound.mp3")
     pygame.mixer.music.play(loops=0)
 
 #database
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='20july4V',
+                    password='Gansi@974111',
                     port=3306,
                     database='login')
 
@@ -29,10 +67,11 @@ root.geometry("637x688")
 root.resizable(0,0)
 root.geometry("638x689")
 root.resizable(0,0)
-pic=Image.open('CREATE ACC.png')
+pic=Image.open('tkimg\\CREATE ACC.png')
 ren=ImageTk.PhotoImage(pic)
 img=Label(root,image=ren)
 img.place(x=0,y=0)
+
 
 
 def goto_homepage():
@@ -83,7 +122,7 @@ def insert_value():
 
 
 
-submit_img=Image.open("submit.png")
+submit_img=Image.open("tkimg\\submit.png")
 submit_img=ImageTk.PhotoImage(submit_img)
 
 
@@ -104,6 +143,7 @@ def signpage():
     Password=StringVar()
     username=StringVar()
     cpass=StringVar()
+
 
 
     fname = Entry(root, bd=8, width=21,textvariable=Name, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='turquoise3')
@@ -128,7 +168,9 @@ def signpage():
                      width=210, height=40, highlightthickness=3)
     sub_btn.place(x=215, y=510)
 
-
+    lbl = ImageLabel(root)
+    lbl.place(x=130, y=590, height=95, width=400)
+    lbl.load('tkimg\\GIF welcome.gif')
     root.mainloop()
 
 signpage()
