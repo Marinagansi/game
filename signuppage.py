@@ -10,37 +10,6 @@ import time
 from itertools import count, cycle
 
 
-class ImageLabel(Label):
-    """
-    A Label that displays images, and plays them if they are gifs
-    :im: A PIL Image instance or a string filename
-    """
-    def load(self, im):
-        if isinstance(im, str):
-            im = Image.open(im)
-        frames = []
-        try:
-            for i in count(1):
-                frames.append(ImageTk.PhotoImage(im.copy()))
-                im.seek(i)
-        except EOFError:
-            pass
-        self.frames = cycle(frames)
-        try:
-            self.delay = im.info['duration']
-        except:
-            self.delay = 100
-        if len(frames) == 1:
-            self.config(image=next(self.frames))
-        else:
-            self.next_frame()
-    def unload(self):
-        self.config(image=None)
-        self.frames = None
-    def next_frame(self):
-        if self.frames:
-            self.config(image=next(self.frames))
-            self.after(self.delay, self.next_frame)
 
 
 #button music
@@ -63,15 +32,30 @@ cur=con.cursor()
 #Main screen
 root = Tk()
 root.title('404 NOT FOUND')
-root.geometry("637x688")
+root.geometry("1200x633")
 root.resizable(0,0)
-root.geometry("638x689")
+root.geometry("1200x633")
 root.resizable(0,0)
-pic=Image.open('tkimg\\CREATE ACC.png')
+pic=Image.open('tkimg\\registerpage.png')
 ren=ImageTk.PhotoImage(pic)
 img=Label(root,image=ren)
 img.place(x=0,y=0)
 
+# load=Image.open("tkimg\\chargame.png.")
+# render=ImageTk.PhotoImage(load)
+# resized_image= load.resize((170,105), Image.ANTIALIAS)
+# new_image= ImageTk.PhotoImage(resized_image)
+# img=Label(root,image=render)
+# img.place(x=0,y=0)
+
+canvas = Canvas(root, width=1200, height=633)
+canvas.pack()
+
+Background1= PhotoImage(file='tkimg\\registerpage.png')
+B_image1 = canvas.create_image(0, 0, image=Background1, anchor=NW)
+
+Back = PhotoImage(file='tkimg\\character.png')
+B_mage = canvas.create_image(599, 10, image=Back, anchor=NW)
 
 
 def goto_homepage():
@@ -147,52 +131,33 @@ def signpage():
 
 
     fname = Entry(root, bd=8, width=21,textvariable=Name, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='turquoise3')
-    fname.place(x=260, y=210)
+    fname.place(x=350, y=140)
 
     lname = Entry(root, bd=8, width=21, textvariable=Lname,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
-    lname.place(x=260, y=260)
+    lname.place(x=350, y=217)
 
     username = Entry(root, bd=8, width=21,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
-    username.place(x=260, y=310)
+    username.place(x=350, y=290)
 
     Email = Entry(root, bd=8, width=21, textvariable=Email,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
-    Email.place(x=260, y=360)
+    Email.place(x=350, y=360)
 
     password = Entry(root, bd=8, width=21, textvariable=Password,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
-    password.place(x=260, y=407)
+    password.place(x=350, y=435)
 
     c_password = Entry(root, bd=8, width=21,textvariable=cpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
-    c_password.place(x=260, y=458)
+    c_password.place(x=350, y=500)
 
     sub_btn = Button(root, image=submit_img, borderwidth=0, command=lambda: [play(),  insert_value()],
                      width=210, height=40, highlightthickness=3)
-    sub_btn.place(x=215, y=510)
+    sub_btn.place(x=699, y=570)
 
-    lbl = ImageLabel(root)
-    lbl.place(x=130, y=590, height=95, width=400)
-    lbl.load('tkimg\\GIF welcome.gif')
+
     root.mainloop()
 
 signpage()
 
-#
-# if name.get()!="" and user.get()!="" and password.get()!="" and confirm.get()!="" and email.get()!="":
-#     if password.get()==confirm.get():
-#         c.execute("""INSERT INTO user_info VALUES(:full_name,:user_name,:password,:email,:type
-#         )""",{
-#             'full_name':name.get(),
-#             'user_name':user.get(),
-#             'password':password.get(),
-#             'email':email.get(),
-#             'type':position
-#             })
-#         conn.commit()
-#         conn.close()
-#         messagebox.showinfo("attention", "detail submitted")
-#     else:
-#         messagebox.showinfo("error!","password doesn't match")
-# else:
-#         messagebox.showinfo("please", "fill all detail")
+
 
 
 
