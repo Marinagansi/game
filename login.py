@@ -64,7 +64,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='Gansi@974111',
+                    password='20july4V',
                     port=3306,
                     database='login')
 print("successful")
@@ -144,17 +144,17 @@ def login():
     login_img = Image.open("tkimg\\loginbtn.png")
     login_img = ImageTk.PhotoImage(login_img)
 
-    username = Entry(root, bd=13, width=19,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='white',
+    username = Entry(root, bd=13, width=19,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#820609',
                    highlightthickness=3)
     username.config(highlightbackground="white", highlightcolor="white")
     username.place(x=790, y=110)#292
 
-    last = Entry(root, bd=13, width=19,textvariable=userpass, relief=FLAT, font=('arial', 14, 'bold'), bg='White',
+    last = Entry(root, bd=13, width=19,textvariable=userpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#820609',
                  highlightthickness=3)
     last.config(highlightbackground="white", highlightcolor="white")
     last.place(x=790, y=210)
 
-    login_btn = Button(root, image=login_img, width=100, height=50, borderwidth=0, font=("arial", 14, 'bold'),
+    login_btn = Button(root, image=login_img, width=100, height=50, borderwidth=0, font=("arial", 14, 'bold'),bg="#220515",
                        command=lambda: [play(),login_verfication()])
     login_btn.place(x=1090, y=170)
 

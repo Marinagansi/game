@@ -23,7 +23,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='Gansi@974111',
+                    password='20july4V',
                     port=3306,
                     database='login')
 
@@ -54,7 +54,7 @@ canvas.pack()
 Background1= PhotoImage(file='tkimg\\registerpage.png')
 B_image1 = canvas.create_image(0, 0, image=Background1, anchor=NW)
 
-Back = PhotoImage(file='tkimg\\character.png')
+Back = PhotoImage(file='tkimg\\ff.png')
 B_mage = canvas.create_image(599, 10, image=Back, anchor=NW)
 
 
@@ -150,7 +150,7 @@ def signpage():
 
     sub_btn = Button(root, image=submit_img, borderwidth=0, command=lambda: [play(),  insert_value()],
                      width=210, height=40, highlightthickness=3)
-    sub_btn.place(x=699, y=570)
+    sub_btn.place(x=740, y=550)
 
 
     root.mainloop()
