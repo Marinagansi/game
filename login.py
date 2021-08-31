@@ -54,7 +54,7 @@ def goto_homepage():
 
 def goto_game():
     root.destroy()
-    os.system('python game_four.py')
+    os.system('python part7.py')
 
 
 def login_verfication():

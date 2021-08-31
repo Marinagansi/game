@@ -1,39 +1,43 @@
 import pygame
+import pygame.event
 import os
-
 pygame.init()
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = int(SCREEN_WIDTH * 0.8)
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('Fighter')
+#screen size
+screen_width = 800
+screen_height = int(screen_width * 0.8)
 
-# set framerate
+screen = pygame.display.set_mode((screen_width, screen_height))
+
+#game title
+pygame.display.set_caption('game')
+
+#set frame rate
 clock = pygame.time.Clock()
 FPS = 60
 
-# define game variables
-GRAVITY = 0.5
+#define game variables
+GRAVITY = 0.75
 
-# define player action variables
+#define player action variables
 moving_left = False
 moving_right = False
 
-# define colours
-BG = (244, 81, 60)
-RED = (255, 0, 0)
 
-
+#define colors
+BG =(168,172,207,153)
+RED = (255,0,0)
 def draw_bg():
     screen.fill(BG)
-    pygame.draw.line(screen, RED, (0, 300), (SCREEN_WIDTH, 300))
+    pygame.draw.line(screen, RED, (0,300), (screen_width,300))
 
 
-class Soldier(pygame.sprite.Sprite):
-    def __init__(self, char_type, x, y, scale, speed):
+#adding player and its location
+class Warrior(pygame.sprite.Sprite):
+    def __init__(self, char_type,x,y, scale, speed):
         pygame.sprite.Sprite.__init__(self)
-        self.alive = True
+        self.alive =True
         self.char_type = char_type
         self.speed = speed
         self.direction = 1
@@ -46,12 +50,12 @@ class Soldier(pygame.sprite.Sprite):
         self.action = 0
         self.update_time = pygame.time.get_ticks()
 
-        # load all images for the players
+        #load all images for the players
         animation_types = ['Idle', 'Run', 'Jump']
         for animation in animation_types:
-            # reset temporary list of images
+            #reset temporary list of images
             temp_list = []
-            # count number of files in the folder
+            #count number of files in the folder
             num_of_frames = len(os.listdir(f'img/{self.char_type}/{animation}'))
             for i in range(num_of_frames):
                 img = pygame.image.load(f'img/{self.char_type}/{animation}/{i}.png')
@@ -59,64 +63,65 @@ class Soldier(pygame.sprite.Sprite):
                 temp_list.append(img)
             self.animation_list.append(temp_list)
 
-        self.image = self.animation_list[self.action][self.frame_index]
+        self.image=self.animation_list[self.action][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
 
     def move(self, moving_left, moving_right):
-        # reset movement variables
+        #reset movement variables
         dx = 0
         dy = 0
 
-        # assign movement variables if moving left or right
+        #assign movement variables if moving left/right
         if moving_left:
             dx = -self.speed
-            self.flip = True
+            self.flip =True
             self.direction = -1
         if moving_right:
             dx = self.speed
             self.flip = False
-            self.direction = 1
+            self.direction =1
 
-        # jump
+        #jump
         if self.jump == True and self.in_air == False:
             self.vel_y = -11
             self.jump = False
             self.in_air = True
-
-        # apply gravity
+        #apply gravity
         self.vel_y += GRAVITY
         if self.vel_y > 10:
             self.vel_y
         dy += self.vel_y
 
-        # check collision with floor
-        if self.rect.bottom + dy > 300:
+        #check collision with floor
+        if self .rect.bottom + dy > 300:
             dy = 300 - self.rect.bottom
             self.in_air = False
 
-        # update rectangle position
+        #update rectangle position
         self.rect.x += dx
         self.rect.y += dy
 
+
+
     def update_animation(self):
-        # update animation
+        #update animation
         ANIMATION_COOLDOWN = 100
-        # update image depending on current frame
+        #update image depending on current frame
         self.image = self.animation_list[self.action][self.frame_index]
-        # check if enough time has passed since the last update
+        #check if enough time has passed since the last update
         if pygame.time.get_ticks() - self.update_time > ANIMATION_COOLDOWN:
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1
-        # if the animation has run out the reset back to the start
+        #if the animation has run out the reset back to the start
         if self.frame_index >= len(self.animation_list[self.action]):
             self.frame_index = 0
 
     def update_action(self, new_action):
-        # check if the new action is different to the previous one
+        #check if the new action is different to the previous one
         if new_action != self.action:
             self.action = new_action
-            # update the animation settings
+            #update the animation settings
             self.frame_index = 0
             self.update_time = pygame.time.get_ticks()
 
@@ -124,35 +129,43 @@ class Soldier(pygame.sprite.Sprite):
         screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
 
 
-player = Soldier('player', 200, 200, 3, 5)
-enemy = Soldier('enemy', 400, 200, 3, 5)
+
+
+player = Warrior('player',200,200,1, 5)
+enemy = Warrior('enemy',400,200,1,5)
+
+
+
+
+
 
 run = True
+
 while run:
 
     clock.tick(FPS)
 
     draw_bg()
-
     player.update_animation()
+
     player.draw()
     enemy.draw()
 
-    # update player actions
+    #update player action
     if player.alive:
         if player.in_air:
-            player.update_action(2)  # 2: jump
+            player.update_action(2)
         elif moving_left or moving_right:
-            player.update_action(1)  # 1: run
+           player.update_action(1)#1: run
         else:
-            player.update_action(0)  # 0: idle
+           player.update_action(0) #0: idle
         player.move(moving_left, moving_right)
 
     for event in pygame.event.get():
-        # quit game
-        if event.type == pygame.QUIT:
-            run = False
-        # keyboard presses
+        #quit game
+        if  event.type == pygame.QUIT:
+            run=False
+        #keyboard presses
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
                 moving_left = True
@@ -163,13 +176,16 @@ while run:
             if event.key == pygame.K_ESCAPE:
                 run = False
 
-        # keyboard button released
+        #keyboard button released
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
                 moving_left = False
             if event.key == pygame.K_d:
                 moving_right = False
 
+
+
     pygame.display.update()
 
 pygame.quit()
+
