@@ -70,6 +70,14 @@ canvas.pack()
 Background = PhotoImage(file='tkimg\\Zombie town blue.png')
 B_image=canvas.create_image(0,0,image=Background,anchor=NW)
 
+
+
+
+
+
+
+
+
 lbl = ImageLabel(master)
 lbl.place(x=830, y=10, height=160, width=355)
 #lbl.load('tkimg\\GIF welcome.gif')

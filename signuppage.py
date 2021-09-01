@@ -23,7 +23,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='20july4V',
+                    password='Gansi@974111',
                     port=3306,
                     database='login')
 
@@ -150,7 +150,7 @@ def signpage():
 
     sub_btn = Button(root, image=submit_img, borderwidth=0, command=lambda: [play(),  insert_value()],
                      width=210, height=40, highlightthickness=3)
-    sub_btn.place(x=740, y=550)
+    sub_btn.place(x=699, y=570)
 
 
     root.mainloop()
