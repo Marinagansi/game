@@ -8,7 +8,6 @@ screen_height = int(screen_width * 0.8)
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Game')
-
 # set frame rate
 clock = pygame.time.Clock()
 FPS = 60

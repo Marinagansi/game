@@ -41,7 +41,7 @@ class ImageLabel(Label):
 
 
 def play():
-    pygame.mixer.music.load("tkimg\\bsound.mp3")
+    pygame.mixer.music.load("tkimg\\btn_click.mp3")
     pygame.mixer.music.play(loops=0)
 
 #assign velocity
@@ -67,7 +67,7 @@ master.resizable(0,0)
 canvas=Canvas(master,width=1200,height=633)
 canvas.pack()
 
-Background = PhotoImage(file='tkimg\\Zombie town blue.png')
+Background = PhotoImage(file='tkimg\\homepage.png')
 B_image=canvas.create_image(0,0,image=Background,anchor=NW)
 
 
@@ -78,10 +78,10 @@ B_image=canvas.create_image(0,0,image=Background,anchor=NW)
 
 
 
-lbl = ImageLabel(master)
-lbl.place(x=830, y=10, height=160, width=355)
+lbl = ImageLabel(master,bg="blue")
+lbl.place(x=830, y=255, height=440, width=364)
 #lbl.load('tkimg\\GIF welcome.gif')
-lbl.load('tkimg\\welc.gif')
+lbl.load('tkimg\\snow.gif')
 
 photo_image = PhotoImage(file='tkimg\\Ellipse 1.png')
 my_image=canvas.create_image(0,0,image=photo_image,anchor=NW)
@@ -121,11 +121,12 @@ ca_img=ImageTk.PhotoImage(ca_img)
 #button
 std_login_btn=Button(master,image=sn_img,width=255,height=70,relief= FLAT, font=('arial',14,'bold'), bg='#00437c', fg='white',activebackground='#00437c' , command =lambda:[play(),goto_login()])
 
-std_login_btn.place(x=880,y=180)
+std_login_btn.place(x=890,y=50)
 
 
 login_btn=Button(master,image=ca_img,width=255,height=70,relief= FLAT,border=0, font=('arial',14,'bold'), bg='#00437c', fg='white',activebackground='#00437c',command= lambda:[play(),goto_sign()])
-login_btn.place(x=880,y=310)
+login_btn.place(x=890,y=160)
+
 
 #animation
 while True:

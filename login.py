@@ -56,7 +56,7 @@ def show_found_status(name,pw):
 
 
 def play():
-    pygame.mixer.music.load("tkimg\\bsound.mp3")
+    pygame.mixer.music.load("tkimg\\btn_click.mp3")
     pygame.mixer.music.play(loops=0)
 
 
@@ -64,7 +64,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='Gansi@974111',
+                    password='20july4V',
                     port=3306,
                     database='login')
 print("successful")
@@ -122,13 +122,14 @@ def login():
     canvas = Canvas(root, width=1200, height=633)
     canvas.pack()
 
-    Background = PhotoImage(file='tkimg\\bbbgg.png')
+    Background = PhotoImage(file='tkimg\\logi.png')
     B_image = canvas.create_image(0, 0, image=Background, anchor=NW)
 
     lbl = ImageLabel(root)
-    lbl.place(x=200, y=68, height=500, width=255)
-    lbl.load('tkimg\\Robot.gif')
+    lbl.place(x=955, y=50, height=350, width=241)
+    lbl.load('tkimg\\robo.gif')
     # lbl.load('D:\\LKG\\robot11.gif')
+
     pygame.mixer.init()
 
     # load = Image.open("tkimg\\id icon.png")
@@ -144,19 +145,26 @@ def login():
     login_img = Image.open("tkimg\\loginbtn.png")
     login_img = ImageTk.PhotoImage(login_img)
 
-    username = Entry(root, bd=13, width=19,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#820609',
+    arrow_img = Image.open("tkimg\\arrow.png")
+    arrow_img = ImageTk.PhotoImage(arrow_img)
+
+    username = Entry(root, bd=11, width=19,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#eaf5ff',
                    highlightthickness=3)
-    username.config(highlightbackground="white", highlightcolor="white")
-    username.place(x=790, y=110)#292
+    username.config(highlightbackground="cadetblue", highlightcolor="cadetblue")
+    username.place(x=500, y=137)#292
 
-    last = Entry(root, bd=13, width=19,textvariable=userpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#820609',
+    last = Entry(root, bd=11, width=19,textvariable=userpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#eaf5ff',
                  highlightthickness=3)
-    last.config(highlightbackground="white", highlightcolor="white")
-    last.place(x=790, y=210)
+    last.config(highlightbackground="cadetblue", highlightcolor="cadetblue")
+    last.place(x=500, y=237)
 
-    login_btn = Button(root, image=login_img, width=100, height=50, borderwidth=0, font=("arial", 14, 'bold'),bg="#220515",
+    login_btn = Button(root, image=login_img, width=100, height=50, borderwidth=0, font=("arial", 14, 'bold'),bg="teal",
                        command=lambda: [play(),login_verfication()])
-    login_btn.place(x=1090, y=170)
+    login_btn.place(x=550, y=300)
+
+    back_btn = Button(root,image=arrow_img , width=241,borderwidth=0, height=50, relief=FLAT, font=('arial', 14, 'bold'),
+                      bg='#1a292c', fg='white', activebackground='#1a292c', command=lambda: [play(), goto_homepage()])
+    back_btn.place(x=955, y=400)
 
     # photo = PhotoImage(file='C:\\Users\\NITRO5\\Downloads\\robu.png')
     # image = canvas.create_image(0, 300, image=photo, anchor=NW)

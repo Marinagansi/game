@@ -16,14 +16,14 @@ from itertools import count, cycle
 pygame.mixer.init()
 def play():
     # pygame.mixer.music.load("C:\\Users\\NITRO5\\Downloads\\bsound.mp3")
-    pygame.mixer.music.load("tkimg\\bsound.mp3")
+    pygame.mixer.music.load("tkimg\\btn_click.mp3")
     pygame.mixer.music.play(loops=0)
 
 #database
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='Gansi@974111',
+                    password='20july4V',
                     port=3306,
                     database='login')
 
@@ -109,7 +109,8 @@ def insert_value():
 submit_img=Image.open("tkimg\\submit.png")
 submit_img=ImageTk.PhotoImage(submit_img)
 
-
+arrow_img = Image.open("tkimg\\arrow.png")
+arrow_img = ImageTk.PhotoImage(arrow_img)
 
 
 def signpage():
@@ -152,7 +153,10 @@ def signpage():
                      width=210, height=40, highlightthickness=3)
     sub_btn.place(x=699, y=570)
 
-
+    back_btn = Button(root, image=arrow_img, width=150, borderwidth=0, height=50, relief=FLAT,
+                      font=('arial', 14, 'bold'),
+                      bg='#d33d10', fg='white', activebackground='#d33d10', command=lambda: [play(), goto_homepage()])
+    back_btn.place(x=90, y=40)
     root.mainloop()
 
 signpage()
