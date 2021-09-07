@@ -23,7 +23,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='20july4V',
+                    password='Gansi@974111',
                     port=3306,
                     database='login')
 
