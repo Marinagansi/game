@@ -36,22 +36,12 @@ root.geometry("1200x633")
 root.resizable(0,0)
 root.geometry("1200x633")
 root.resizable(0,0)
-pic=Image.open('tkimg\\registerpage.png')
-ren=ImageTk.PhotoImage(pic)
-img=Label(root,image=ren)
-img.place(x=0,y=0)
 
-# load=Image.open("tkimg\\chargame.png.")
-# render=ImageTk.PhotoImage(load)
-# resized_image= load.resize((170,105), Image.ANTIALIAS)
-# new_image= ImageTk.PhotoImage(resized_image)
-# img=Label(root,image=render)
-# img.place(x=0,y=0)
 
 canvas = Canvas(root, width=1200, height=633)
 canvas.pack()
 
-Background1= PhotoImage(file='tkimg\\registerpage.png')
+Background1= PhotoImage(file='tkimg\\rbg1.png')
 B_image1 = canvas.create_image(0, 0, image=Background1, anchor=NW)
 
 Back = PhotoImage(file='tkimg\\ff.png')

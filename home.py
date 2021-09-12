@@ -56,18 +56,15 @@ yvelocity1=2
 master = Tk()
 master.title('404 NOT FOUND')
 
-master.geometry("1200x633")#("639x698")#
+master.geometry("1200x633")
 master.resizable(0,0)
-# load=Image.open("Login.png")
-# render=ImageTk.PhotoImage(load)
-# img=Label(master,image=render)
-# img.place(x=0,y=0)
 
 #canvas
 canvas=Canvas(master,width=1200,height=633)
 canvas.pack()
 
-Background = PhotoImage(file='tkimg\\homepage.png')
+#
+Background = PhotoImage(file='tkimg\\snwbg.png')
 B_image=canvas.create_image(0,0,image=Background,anchor=NW)
 
 
@@ -78,10 +75,10 @@ B_image=canvas.create_image(0,0,image=Background,anchor=NW)
 
 
 
-lbl = ImageLabel(master,bg="blue")
-lbl.place(x=830, y=255, height=440, width=364)
-#lbl.load('tkimg\\GIF welcome.gif')
-lbl.load('tkimg\\snow.gif')
+lbl = ImageLabel(master)
+lbl.place(x=830, y=405, height=180, width=365)
+lbl.load('C:\\Users\\NITRO5\\Downloads\\wlc-unscreen (4).gif')
+# lbl.load('tkimg\\snow.gif')
 
 photo_image = PhotoImage(file='tkimg\\Ellipse 1.png')
 my_image=canvas.create_image(0,0,image=photo_image,anchor=NW)
@@ -110,22 +107,17 @@ def goto_login():
 
 
 
-sn_img=Image.open("tkimg\\snbutton.png")
-sn_img=ImageTk.PhotoImage(sn_img)
-
-ca_img=Image.open("tkimg\\ca button.png")
-ca_img=ImageTk.PhotoImage(ca_img)
 
 
 
 #button
-std_login_btn=Button(master,image=sn_img,width=255,height=70,relief= FLAT, font=('arial',14,'bold'), bg='#00437c', fg='white',activebackground='#00437c' , command =lambda:[play(),goto_login()])
+std_login_btn=Button(master,text="sign in",width=8,height=1,relief= FLAT, font=('Comic Sans MS',30,'bold italic'), bg='#9AAACB', fg='white',activebackground='#9AAACB' , command =lambda:[play(),goto_login()])
 
-std_login_btn.place(x=890,y=50)
+std_login_btn.place(x=880,y=40)
 
 
-login_btn=Button(master,image=ca_img,width=255,height=70,relief= FLAT,border=0, font=('arial',14,'bold'), bg='#00437c', fg='white',activebackground='#00437c',command= lambda:[play(),goto_sign()])
-login_btn.place(x=890,y=160)
+login_btn=Button(master,text="Create Account",width=13,height=1,relief= FLAT,border=0, font=('Comic Sans MS',25,'bold italic'), bg='#9AAACB', fg='white',activebackground='#9AAACB',command= lambda:[play(),goto_sign()])
+login_btn.place(x=855,y=135)
 
 
 #animation
