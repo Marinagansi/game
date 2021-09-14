@@ -141,7 +141,7 @@ def signpage():
 
     sub_btn = Button(root, image=submit_img, borderwidth=0, command=lambda: [play(),  insert_value()],
                      width=210, height=40, highlightthickness=3)
-    sub_btn.place(x=699, y=570)
+    sub_btn.place(x=745, y=570)
 
     back_btn = Button(root, image=arrow_img, width=150, borderwidth=0, height=50, relief=FLAT,
                       font=('arial', 14, 'bold'),
