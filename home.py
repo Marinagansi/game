@@ -111,12 +111,12 @@ def goto_login():
 
 
 #button
-std_login_btn=Button(master,text="sign in",width=8,height=1,relief= FLAT, font=('Comic Sans MS',30,'bold italic'), bg='#9AAACB', fg='white',activebackground='#9AAACB' , command =lambda:[play(),goto_login()])
+std_login_btn=Button(master,text="sign in",width=8,height=1,relief= FLAT,border=0, font=('Comic Sans MS',30,'bold italic'), bg='#9AAACB', fg='white',activebackground='#9AAACB' ,activeforeground='white', command =lambda:[play(),goto_login()])
 
 std_login_btn.place(x=880,y=40)
 
 
-login_btn=Button(master,text="Create Account",width=13,height=1,relief= FLAT,border=0, font=('Comic Sans MS',25,'bold italic'), bg='#9AAACB', fg='white',activebackground='#9AAACB',command= lambda:[play(),goto_sign()])
+login_btn=Button(master,text="Create Account",width=13,height=1,relief= FLAT,border=0, font=('Comic Sans MS',25,'bold italic'), bg='#9AAACB', fg='white',activebackground='#9AAACB',activeforeground='white',command= lambda:[play(),goto_sign()])
 login_btn.place(x=855,y=135)
 
 
