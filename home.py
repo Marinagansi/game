@@ -77,7 +77,7 @@ B_image=canvas.create_image(0,0,image=Background,anchor=NW)
 
 lbl = ImageLabel(master)
 lbl.place(x=830, y=405, height=180, width=365)
-lbl.load('C:\\Users\\NITRO5\\Downloads\\wlc-unscreen (4).gif')
+lbl.load('tkimg\\wlc-unscreen (4).gif')
 # lbl.load('tkimg\\snow.gif')
 
 photo_image = PhotoImage(file='tkimg\\Ellipse 1.png')
