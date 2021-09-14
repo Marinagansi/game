@@ -159,7 +159,7 @@ def login():
     last.place(x=500, y=237)
 
     login_btn = Button(root, image=login_img, width=100, height=50, borderwidth=0, font=("arial", 14, 'bold'),bg="teal",
-                       command=lambda: [play(),login_verfication()])
+                       activebackground='teal', command=lambda: [play(),login_verfication()])
     login_btn.place(x=550, y=300)
 
     back_btn = Button(root,image=arrow_img , width=241,borderwidth=0, height=50, relief=FLAT, font=('arial', 14, 'bold'),
