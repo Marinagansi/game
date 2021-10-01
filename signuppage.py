@@ -11,7 +11,7 @@ from itertools import count, cycle
 
 
 
-
+flag=0
 #button music
 pygame.mixer.init()
 def play():
@@ -91,7 +91,17 @@ def insert_value():
         con.commit()
         con.close()
         messagebox.showinfo("hurray","signup successfull")
+        global flag
+        flag=1
         goto_homepage()
+    status=set_status(flag)
+
+
+def get_status(flag_value):
+    if flag_value==0:
+        return "signup failed"
+    else:
+        return "signup successfull"
 
 
 
@@ -102,6 +112,12 @@ submit_img=ImageTk.PhotoImage(submit_img)
 arrow_img = Image.open("tkimg\\arrow.png")
 arrow_img = ImageTk.PhotoImage(arrow_img)
 
+def set_status(flag):
+    if flag==1:
+
+       return "insert value completed"
+    else:
+        return "insert unsuccessful"
 
 def signpage():
     global messaage;

@@ -39,6 +39,7 @@ class ImageLabel(Label):
         if self.frames:
             self.config(image=next(self.frames))
             self.after(self.delay, self.next_frame)
+##########################################################
 
 
 pygame.mixer.music.load("tkimg\\rbs.mp3")
