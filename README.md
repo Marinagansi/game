@@ -10,3 +10,7 @@ Shooting the enemy to be in-game, defeating all the obstacles in-order to comple
 *	Player must register and log in to play the game.
 *	Players must face different obstacles as the part of challenge.
 
+### Home page
+![image](https://user-images.githubusercontent.com/78782374/135749391-5cb6e845-b12f-4d26-b754-f5dddc7d09b3.png)
+
+
