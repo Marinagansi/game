@@ -7,7 +7,6 @@ import pygame
 from itertools import count, cycle
 pygame.mixer.init()
 import time;
-
 class ImageLabel(Label):
     """
     A Label that displays images, and plays them if they are gifs
@@ -41,10 +40,6 @@ class ImageLabel(Label):
             self.after(self.delay, self.next_frame)
 ##########################################################
 
-    #############################################
-
-
-
 pygame.mixer.music.load("tkimg\\rbs.mp3")
 pygame.mixer.music.play(loops=3)
 #button music
@@ -58,11 +53,9 @@ def show_found_status(name,pw):
     else:
         return "account not found"
 
-
 def play():
     pygame.mixer.music.load("tkimg\\btn_click.mp3")
     pygame.mixer.music.play(loops=0)
-
 
 ##dtabase
 con= mysql.connector.connect(
@@ -73,7 +66,6 @@ con= mysql.connector.connect(
                     database='login')
 print("successful")
 cur=con.cursor()
-
 
 #Main screen
 root = Tk()
@@ -86,21 +78,12 @@ root.resizable(0,0)
 # renr=ImageTk.PhotoImage(pic)
 # img=Label(root,image=renr)
 # img.place(x=0,y=0)
-
-# anim = ImageLabel(root,'tkimg\\robo.gif')
-# anim.pack()
-# lbl = ImageLabel(root,'tkimg\\robo.gif')
-# lbl.place(x=955, y=50, height=350, width=241)
-
-
 def goto_homepage():
     root.destroy()
     os.system('python home.py')
-
 def goto_game():
     root.destroy()
     os.system('python part11.py')
-
 #defining functions for login verification
 def login_verfication():
     name = username.get()
@@ -108,44 +91,30 @@ def login_verfication():
     sql="select * from registration where username=%s and password=%s"
     cur.execute(sql,[(name),(password)])
     result=cur.fetchall()
-
     if result:
         for i in result:
-
             goto_game()
             break
     else:
         messagebox.showinfo("error","invalid user name and password")
-
 def login():
     # animation
     xvelocity = 1
     yvelocity = 2
 
-def goto_forget():
-    root.destroy()
-    os.system('python forget.py')
-
-
-
     global username
     global userpass
     username=StringVar()
     userpass=StringVar()
-
     canvas = Canvas(root, width=1200, height=633)
     canvas.pack()
-
     Background = PhotoImage(file='tkimg\\logi.png')
     B_image = canvas.create_image(0, 0, image=Background, anchor=NW)
-
-    lbl = ImageLabel(root,)
+    lbl = ImageLabel(root)
     lbl.place(x=955, y=50, height=350, width=241)
-    lbl.load('tkimg\\robot11.gif')
+    lbl.load('tkimg\\robo.gif')
     # lbl.load('D:\\LKG\\robot11.gif')
-
     pygame.mixer.init()
-
     # load = Image.open("tkimg\\id icon.png")
     # render = ImageTk.PhotoImage(load)
     # img1 = Label(root, image=render, bd=4)
@@ -155,47 +124,28 @@ def goto_forget():
     # ren = ImageTk.PhotoImage(load)
     # img2 = Label(root, image=ren, bd=4)
     # img2.place(x=165, y=370)
-
     login_img = Image.open("tkimg\\loginbtn.png")
     login_img = ImageTk.PhotoImage(login_img)
-
     arrow_img = Image.open("tkimg\\arrow.png")
     arrow_img = ImageTk.PhotoImage(arrow_img)
-
     username = Entry(root, bd=11, width=19,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#eaf5ff',
                    highlightthickness=3)
     username.config(highlightbackground="cadetblue", highlightcolor="cadetblue")
     username.place(x=500, y=137)#292
-
     last = Entry(root, bd=11, width=19,textvariable=userpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#eaf5ff',
                  highlightthickness=3)
     last.config(highlightbackground="cadetblue", highlightcolor="cadetblue")
     last.place(x=500, y=237)
-
     login_btn = Button(root, image=login_img, width=100, height=50, borderwidth=0, font=("arial", 14, 'bold'),bg="teal",
                        activebackground='teal', command=lambda: [play(),login_verfication()])
     login_btn.place(x=550, y=300)
-
-    back_btn = Button(root, image=arrow_img, width=241, borderwidth=0, height=50, relief=FLAT,
-                      font=('arial', 14, 'bold'),
+    back_btn = Button(root,image=arrow_img , width=241,borderwidth=0, height=50, relief=FLAT, font=('arial', 14, 'bold'),
                       bg='#1a292c', fg='white', activebackground='#1a292c', command=lambda: [play(), goto_homepage()])
     back_btn.place(x=955, y=400)
-
-    lbl = Label(text="forget password?", relief=FLAT, font=('arial', 14, 'bold'), bg='#1a292c', fg='white',
-                      )
-    lbl.place(x=500, y=580)
-    forget_btn = Button(root, text="click here",  relief=FLAT,
-                      font=('arial', 10, 'bold'),
-                      bg='#1a292c', fg='white', activebackground='#1a292c', command=lambda: [play(), goto_forget()])
-    forget_btn.place(x=670, y=580)
-
-
     # photo = PhotoImage(file='C:\\Users\\NITRO5\\Downloads\\robu.png')
     # image = canvas.create_image(0, 300, image=photo, anchor=NW)
-
     # image_width = photo.width()
     # image_height = photo.height()
-
     # while True:
     #     coordinates = canvas.coords(image)
     #
@@ -207,7 +157,5 @@ def goto_forget():
     #     canvas.move(image, xvelocity,yvelocity)
     #     root.update()
     #     time.sleep(0.01)
-
     root.mainloop()
-
 login()
