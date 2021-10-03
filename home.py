@@ -120,6 +120,7 @@ login_btn=Button(master,text="Create Account",width=13,height=1,relief= FLAT,bor
 login_btn.place(x=855,y=135)
 
 
+
 #animation
 while True:
     coordinates=canvas.coords(my_image)

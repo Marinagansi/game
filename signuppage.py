@@ -23,7 +23,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='20july4V',
+                    password='Gansi@974111',
                     port=3306,
                     database='login')
 
@@ -134,12 +134,6 @@ def signpage():
     Password=StringVar()
     username=StringVar()
     cpass=StringVar()
-
-
-
-    fname = Entry(root, bd=8, width=21,textvariable=Name, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='turquoise3')
-    fname.place(x=350, y=140)
-
     lname = Entry(root, bd=8, width=21, textvariable=Lname,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
     lname.place(x=350, y=217)
 
@@ -148,6 +142,13 @@ def signpage():
 
     Email = Entry(root, bd=8, width=21, textvariable=Email,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
     Email.place(x=350, y=360)
+
+
+
+
+    fname = Entry(root, bd=8, width=21,textvariable=Name, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='turquoise3')
+    fname.place(x=350, y=140)
+
 
     password = Entry(root, bd=8, width=21, textvariable=Password,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
     password.place(x=350, y=435)

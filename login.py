@@ -41,6 +41,9 @@ class ImageLabel(Label):
             self.after(self.delay, self.next_frame)
 ##########################################################
 
+    #############################################
+
+
 
 pygame.mixer.music.load("tkimg\\rbs.mp3")
 pygame.mixer.music.play(loops=3)
@@ -65,7 +68,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='20july4V',
+                    password='Gansi@974111',
                     port=3306,
                     database='login')
 print("successful")
@@ -83,6 +86,12 @@ root.resizable(0,0)
 # renr=ImageTk.PhotoImage(pic)
 # img=Label(root,image=renr)
 # img.place(x=0,y=0)
+
+# anim = ImageLabel(root,'tkimg\\robo.gif')
+# anim.pack()
+# lbl = ImageLabel(root,'tkimg\\robo.gif')
+# lbl.place(x=955, y=50, height=350, width=241)
+
 
 def goto_homepage():
     root.destroy()
@@ -113,6 +122,10 @@ def login():
     xvelocity = 1
     yvelocity = 2
 
+def goto_forget():
+    root.destroy()
+    os.system('python forget.py')
+
 
 
     global username
@@ -126,9 +139,9 @@ def login():
     Background = PhotoImage(file='tkimg\\logi.png')
     B_image = canvas.create_image(0, 0, image=Background, anchor=NW)
 
-    lbl = ImageLabel(root)
+    lbl = ImageLabel(root,)
     lbl.place(x=955, y=50, height=350, width=241)
-    lbl.load('tkimg\\robo.gif')
+    lbl.load('tkimg\\robot11.gif')
     # lbl.load('D:\\LKG\\robot11.gif')
 
     pygame.mixer.init()
@@ -163,9 +176,19 @@ def login():
                        activebackground='teal', command=lambda: [play(),login_verfication()])
     login_btn.place(x=550, y=300)
 
-    back_btn = Button(root,image=arrow_img , width=241,borderwidth=0, height=50, relief=FLAT, font=('arial', 14, 'bold'),
+    back_btn = Button(root, image=arrow_img, width=241, borderwidth=0, height=50, relief=FLAT,
+                      font=('arial', 14, 'bold'),
                       bg='#1a292c', fg='white', activebackground='#1a292c', command=lambda: [play(), goto_homepage()])
     back_btn.place(x=955, y=400)
+
+    lbl = Label(text="forget password?", relief=FLAT, font=('arial', 14, 'bold'), bg='#1a292c', fg='white',
+                      )
+    lbl.place(x=500, y=580)
+    forget_btn = Button(root, text="click here",  relief=FLAT,
+                      font=('arial', 10, 'bold'),
+                      bg='#1a292c', fg='white', activebackground='#1a292c', command=lambda: [play(), goto_forget()])
+    forget_btn.place(x=670, y=580)
+
 
     # photo = PhotoImage(file='C:\\Users\\NITRO5\\Downloads\\robu.png')
     # image = canvas.create_image(0, 300, image=photo, anchor=NW)
