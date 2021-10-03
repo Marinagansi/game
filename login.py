@@ -92,7 +92,7 @@ def goto_game():
     root.destroy()
     os.system('python part11.py')
 
-
+#defining functions for login verification
 def login_verfication():
     name = username.get()
     password = userpass.get()
