@@ -59,6 +59,7 @@ start_img = pygame.image.load('img6/start_btn.png').convert_alpha()
 exit_img = pygame.image.load('img6/exit_btn.png').convert_alpha()
 restart_img = pygame.image.load('img6/restart_btn.png').convert_alpha()
 startbg_img = pygame.image.load('img6/backg.png').convert_alpha()
+
 # background images
 first_img = pygame.image.load('img6/Background/1.png').convert_alpha()
 second_img = pygame.image.load('img6/Background/2.png').convert_alpha()
@@ -75,10 +76,13 @@ for x in range(TILE_TYPES):
     img = pygame.image.load(f'img6/tile/{x}.png')
     img = pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE))
     img_list.append(img)
+
 # bullet
 bullet_img = pygame.image.load('img6/icons/bullet.png').convert_alpha()
+
 # grenade
 grenade_img = pygame.image.load('img6/icons/bomb.png').convert_alpha()
+
 # pick up boxes
 health_box_img = pygame.image.load('img6/icons/health.png').convert_alpha()
 ammo_box_img = pygame.image.load('img6/icons/ammo_box.png').convert_alpha()
@@ -169,8 +173,10 @@ class Soldier(pygame.sprite.Sprite):
         # load all images for the players
         animation_types = ['Idle', 'Run', 'Jump', 'Death']
         for animation in animation_types:
+
             # reset temporary list of images
             temp_list = []
+
             # count number of files in the folder
             num_of_frames = len(os.listdir(f'img6/{self.char_type}/{animation}'))
             for i in range(num_of_frames):
@@ -188,6 +194,7 @@ class Soldier(pygame.sprite.Sprite):
     def update(self):
         self.update_animation()
         self.check_alive()
+
         # update cooldown
         if self.shoot_cooldown > 0:
             self.shoot_cooldown -= 1
@@ -222,19 +229,24 @@ class Soldier(pygame.sprite.Sprite):
 
         # check for collision
         for tile in world.obstacle_list:
+
             # check collision in the x direction
             if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
                 dx = 0
+
                 # if the ai has hit a wall then make it turn around
                 if self.char_type == 'enemy':
                     self.direction *= -1
                     self.move_counter = 0
+
             # check for collision in the y direction
             if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
+
                 # check if below the ground, i.e. jumping
                 if self.vel_y < 0:
                     self.vel_y = 0
                     dy = tile[1].bottom - self.rect.top
+
                 # check if above the ground, i.e. falling
                 elif self.vel_y >= 0:
                     self.vel_y = 0
@@ -279,6 +291,7 @@ class Soldier(pygame.sprite.Sprite):
             bullet = Bullet(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery,
                             self.direction)
             bullet_group.add(bullet)
+
             # reduce ammo
             self.ammo -= 1
             shot_fx.play()
@@ -289,10 +302,13 @@ class Soldier(pygame.sprite.Sprite):
                 self.update_action(0)  # 0: idle
                 self.idling = True
                 self.idling_counter = 50
+
             # check if the ai in near the player
             if self.vision.colliderect(player.rect):
+
                 # stop running and face the player
                 self.update_action(0)  # 0: idle
+
                 # shoot
                 self.shoot()
             else:
@@ -305,6 +321,7 @@ class Soldier(pygame.sprite.Sprite):
                     self.move(ai_moving_left, ai_moving_right)
                     self.update_action(1)  # 1: run
                     self.move_counter += 1
+
                     # update ai vision as the enemy moves
                     self.vision.center = (self.rect.centerx + 75 * self.direction, self.rect.centery)
 
@@ -320,14 +337,18 @@ class Soldier(pygame.sprite.Sprite):
         self.rect.x += screen_scroll
 
     def update_animation(self):
+
         # update animation
         ANIMATION_COOLDOWN = 100
+
         # update image depending on current frame
         self.image = self.animation_list[self.action][self.frame_index]
+
         # check if enough time has passed since the last update
         if pygame.time.get_ticks() - self.update_time > ANIMATION_COOLDOWN:
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1
+
         # if the animation has run out the reset back to the start
         if self.frame_index >= len(self.animation_list[self.action]):
             if self.action == 3:
@@ -339,6 +360,7 @@ class Soldier(pygame.sprite.Sprite):
         # check if the new action is different to the previous one
         if new_action != self.action:
             self.action = new_action
+
             # update the animation settings
             self.frame_index = 0
             self.update_time = pygame.time.get_ticks()
@@ -360,6 +382,7 @@ class World():
 
     def process_data(self, data):
         self.level_length = len(data[0])
+
         # iterate through each value in level data file
         for y, row in enumerate(data):
             for x, tile in enumerate(row):
@@ -451,8 +474,10 @@ class ItemBox(pygame.sprite.Sprite):
     def update(self):
         # scroll
         self.rect.x += screen_scroll
+
         # check if the player has picked up the box
         if pygame.sprite.collide_rect(self, player):
+
             # check what kind of box it was
             if self.item_type == 'Health':
                 player.health += 25
@@ -479,6 +504,7 @@ class HealthBar():
     def draw(self, health):
         # update with new health
         self.health = health
+
         # calculate health ratio
         ratio = self.health / self.max_health
         pygame.draw.rect(screen, BLACK, (self.x - 2, self.y - 2, 154, 24))
@@ -498,6 +524,7 @@ class Bullet(pygame.sprite.Sprite):
     def update(self):
         # move bullet
         self.rect.x += (self.direction * self.speed) + screen_scroll
+
         # check if bullet has gone off screen
         if self.rect.right < 0 or self.rect.left > SCREEN_WIDTH:
             self.kill()
@@ -538,17 +565,21 @@ class Grenade(pygame.sprite.Sprite):
 
         # check for collision with level
         for tile in world.obstacle_list:
+
             # check collision with walls
             if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
                 self.direction *= -1
                 dx = self.direction * self.speed
+
             # check for collision in the y direction
             if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
                 self.speed = 0
+
                 # check if below the ground, i.e. thrown up
                 if self.vel_y < 0:
                     self.vel_y = 0
                     dy = tile[1].bottom - self.rect.top
+
                 # check if above the ground, i.e. falling
                 elif self.vel_y >= 0:
                     self.vel_y = 0
@@ -565,6 +596,7 @@ class Grenade(pygame.sprite.Sprite):
             grenade_fx.play()
             explosion = Explosion(self.rect.x, self.rect.y, 0.5)
             explosion_group.add(explosion)
+
             # do damage to anyone that is nearby
             if abs(self.rect.centerx - player.rect.centerx) < TILE_SIZE * 2 and \
                     abs(self.rect.centery - player.rect.centery) < TILE_SIZE * 2:
@@ -594,12 +626,14 @@ class Explosion(pygame.sprite.Sprite):
         self.rect.x += screen_scroll
 
         EXPLOSION_SPEED = 4
+
         # update explosion animation
         self.counter += 1
 
         if self.counter >= EXPLOSION_SPEED:
             self.counter = 0
             self.frame_index += 1
+
             # if the animation is complete then delete the explosion
             if self.frame_index >= len(self.images):
                 self.kill()
@@ -655,6 +689,7 @@ world_data = []
 for row in range(ROWS):
     r = [-1] * COLS
     world_data.append(r)
+
 # load in level data and create world
 with open(f'level6_data.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
@@ -681,20 +716,25 @@ while run:
     else:
         # update background
         draw_bg()
+
         # draw world map
         world.draw()
+
         # show player health
         health_bar.draw(player.health)
+
         # show ammo
         draw_text('AMMO: ', font, WHITE, 10, 35)
         for x in range(player.ammo):
             screen.blit(bullet_img, (90 + (x * 10), 40))
+
         # show grenades
         draw_text('GRENADES: ', font, WHITE, 10, 60)
         for x in range(player.grenades):
             screen.blit(grenade_img, (135 + (x * 15), 60))
         # creating score
         draw_text(f'SCORE: {player.score}', font, WHITE, 10, 90)
+
         # creating score
         draw_text(f'HIGHSCORE: {high_score}', font, WHITE, 10, 120)
 
@@ -734,11 +774,13 @@ while run:
             # shoot bullets
             if shoot:
                 player.shoot()
+
             # throw grenades
             elif grenade and grenade_thrown == False and player.grenades > 0:
                 grenade = Grenade(player.rect.centerx + (0.5 * player.rect.size[0] * player.direction), \
                                   player.rect.top, player.direction)
                 grenade_group.add(grenade)
+
                 # reduce grenades
                 player.grenades -= 1
                 grenade_thrown = True
@@ -774,6 +816,7 @@ while run:
                     start_intro = True
                     bg_scroll = 0
                     world_data = reset_level()
+
                     # load in level data and create world
                     with open(f'level6_data.csv', newline='') as csvfile:
                         reader = csv.reader(csvfile, delimiter=',')
@@ -787,6 +830,7 @@ while run:
         # quit game
         if event.type == pygame.QUIT:
             run = False
+
         # keyboard presses
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
