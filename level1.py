@@ -766,11 +766,13 @@ while run:
             # check if completed the level
             if level_complete:
 
+
                 start_intro = True
                 level += 1
                 bg_scroll = 0
                 world_data = reset_level()
                 if level <= MAX_LEVEL:
+
                     open(os.system('python level2.py'))
 
 
