@@ -859,7 +859,5 @@ while run:
             if event.key == pygame.K_q:
                 grenade = False
                 grenade_thrown = False
-
     pygame.display.update()
-
 pygame.quit()
