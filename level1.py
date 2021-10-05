@@ -34,6 +34,7 @@ start_game = False
 start_intro = False
 
 #load highscore
+
 with open('highscore.txt', 'r') as file:
     high_score = int(file.read())
 
