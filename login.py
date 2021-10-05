@@ -83,7 +83,7 @@ def goto_homepage():
     os.system('python home.py')
 def goto_game():
     root.destroy()
-    os.system('python part1.py')
+    os.system('python level1.py')
 #defining functions for login verification
 def login_verfication():
     name = username.get()
