@@ -61,7 +61,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='Gansi@974111',
+                    password='root',
                     port=3306,
                     database='login')
 print("successful")
@@ -83,7 +83,7 @@ def goto_homepage():
     os.system('python home.py')
 def goto_game():
     root.destroy()
-    os.system('python part11.py')
+    os.system('python part1.py')
 #defining functions for login verification
 def login_verfication():
     name = username.get()
