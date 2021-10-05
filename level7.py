@@ -508,12 +508,12 @@ class Bullet(pygame.sprite.Sprite):
         # check collision with characters
         if pygame.sprite.spritecollide(player, bullet_group, False):
             if player.alive:
-                player.health -= 20
+                player.health -=20
                 self.kill()
         for enemy in enemy_group:
             if pygame.sprite.spritecollide(enemy, bullet_group, False):
                 if enemy.alive:
-                    enemy.health -= 25
+                    enemy.health -=25
                     self.kill()
 
 
@@ -537,17 +537,21 @@ class Grenade(pygame.sprite.Sprite):
 
         # check for collision with level
         for tile in world.obstacle_list:
+
             # check collision with walls
             if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
                 self.direction *= -1
                 dx = self.direction * self.speed
+
             # check for collision in the y direction
             if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
                 self.speed = 0
+
                 # check if below the ground, i.e. thrown up
                 if self.vel_y < 0:
                     self.vel_y = 0
                     dy = tile[1].bottom - self.rect.top
+
                 # check if above the ground, i.e. falling
                 elif self.vel_y >= 0:
                     self.vel_y = 0
@@ -564,6 +568,7 @@ class Grenade(pygame.sprite.Sprite):
             grenade_fx.play()
             explosion = Explosion(self.rect.x, self.rect.y, 0.5)
             explosion_group.add(explosion)
+
             # do damage to anyone that is nearby
             if abs(self.rect.centerx - player.rect.centerx) < TILE_SIZE * 2 and \
                     abs(self.rect.centery - player.rect.centery) < TILE_SIZE * 2:
@@ -589,16 +594,19 @@ class Explosion(pygame.sprite.Sprite):
         self.counter = 0
 
     def update(self):
+
         # scroll
         self.rect.x += screen_scroll
 
         EXPLOSION_SPEED = 4
+
         # update explosion animation
         self.counter += 1
 
         if self.counter >= EXPLOSION_SPEED:
             self.counter = 0
             self.frame_index += 1
+
             # if the animation is complete then delete the explosion
             if self.frame_index >= len(self.images):
                 self.kill()
@@ -654,6 +662,7 @@ world_data = []
 for row in range(ROWS):
     r = [-1] * COLS
     world_data.append(r)
+
 # load in level data and create world
 with open(f'level7_data.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
@@ -669,8 +678,10 @@ while run:
     clock.tick(FPS)
 
     if start_game == False:
+
         # draw menu
         screen.blit(startbg_img, (0, 0))
+
         # add buttons
         if start_button.draw(screen):
             start_game = True
@@ -680,20 +691,26 @@ while run:
     else:
         # update background
         draw_bg()
+
         # draw world map
         world.draw()
+
         # show player health
         health_bar.draw(player.health)
+
         # show ammo
         draw_text('AMMO: ', font, WHITE, 10, 35)
         for x in range(player.ammo):
             screen.blit(bullet_img, (90 + (x * 10), 40))
+
         # show grenades
         draw_text('GRENADES: ', font, WHITE, 10, 60)
         for x in range(player.grenades):
             screen.blit(grenade_img, (135 + (x * 15), 60))
+
         # creating score
         draw_text(f'SCORE: {player.score}', font, WHITE, 10, 90)
+
         # creating score
         draw_text(f'HIGHSCORE: {high_score}', font, WHITE, 10, 120)
 
@@ -730,14 +747,17 @@ while run:
 
         # update player actions
         if player.alive:
+
             # shoot bullets
             if shoot:
                 player.shoot()
+
             # throw grenades
             elif grenade and grenade_thrown == False and player.grenades > 0:
                 grenade = Grenade(player.rect.centerx + (0.5 * player.rect.size[0] * player.direction), \
                                   player.rect.top, player.direction)
                 grenade_group.add(grenade)
+
                 # reduce grenades
                 player.grenades -= 1
                 grenade_thrown = True
@@ -749,11 +769,13 @@ while run:
                 player.update_action(0)  # 0: idle
             screen_scroll, level_complete = player.move(moving_left, moving_right)
             bg_scroll -= screen_scroll
+
             # rewriting high score
             if player.score > high_score:
                 high_score = player.score
                 with open('highscore.txt', 'w') as file:
                     file.write(str(high_score))
+
             # check if completed the level
             if level_complete:
                 start_intro = True
@@ -771,6 +793,7 @@ while run:
                     start_intro = True
                     bg_scroll = 0
                     world_data = reset_level()
+
                     # load in level data and create world
                     with open(f'level7_data.csv', newline='') as csvfile:
                         reader = csv.reader(csvfile, delimiter=',')
@@ -784,6 +807,7 @@ while run:
         # quit game
         if event.type == pygame.QUIT:
             run = False
+
         # keyboard presses
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
