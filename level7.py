@@ -24,7 +24,7 @@ SCROLL_THRESH = 200
 ROWS = 20
 COLS = 150
 TILE_SIZE = SCREEN_HEIGHT // ROWS
-TILE_TYPES = 21
+TILE_TYPES = 22
 screen_scroll = 0
 bg_scroll = 0
 high_score = 0
@@ -508,12 +508,12 @@ class Bullet(pygame.sprite.Sprite):
         # check collision with characters
         if pygame.sprite.spritecollide(player, bullet_group, False):
             if player.alive:
-                player.health -= 20
+                player.health -= 10
                 self.kill()
         for enemy in enemy_group:
             if pygame.sprite.spritecollide(enemy, bullet_group, False):
                 if enemy.alive:
-                    enemy.health -= 25
+                    enemy.health -= 35
                     self.kill()
 
 
