@@ -91,11 +91,14 @@ def draw_bg():
         screen.blit(second_img, ((x * width) - scroll * 0.9, screen_height - second_img.get_height() - 0))
         screen.blit(first_img, ((x * width) - scroll * 1, 0))
 
+
 #draw grid
 def draw_grid():
+
     #vertical lines
     for c in range(max_cols + 1):
         pygame.draw.line(screen, WHITE, (c * tile_size-scroll, 0), (c * tile_size - scroll, screen_height))
+
     #horizontal lines
     for c in range (rows +1):
         pygame.draw.line(screen, WHITE, (0, c * tile_size), (screen_width, c * tile_size))
@@ -111,6 +114,7 @@ def draw_world():
 #create buttons
 save_button = button.Button(screen_width // 2, screen_height + lower_margin -50, save_img, 1)
 load_button = button.Button(screen_width // 2 + 200, screen_height + lower_margin -50, load_img, 1)
+
 #make a button list
 button_list = []
 button_col = 0
@@ -144,9 +148,11 @@ while run:
             writer = csv.writer(csvfile, delimiter=',')
             for row in world_data:
                 writer.writerow(row)
+
     # alternative pickle method
     # pickle_out = open(f'level{level}_data', 'wb')
     # pickle.dump(world_data, pickle_out)
+
     # pickle_out.close()
     if load_button.draw(screen):
         # load in level data
@@ -182,6 +188,7 @@ while run:
 
     #check that the coordinates are within the tiles areas
     if pos[0] < screen_width and pos[1] < screen_height:
+
         #update tile value
         if pygame.mouse.get_pressed()[0] == 1:
             if world_data[y][x] != current_tile:
@@ -192,6 +199,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+
         #keyboard presses
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
