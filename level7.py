@@ -756,12 +756,13 @@ while run:
                     file.write(str(high_score))
             # check if completed the level
             if level_complete:
-                start_intro = True
-                level += 1
-                bg_scroll = 0
-                world_data = reset_level()
-                if level <= MAX_LEVEL:
-                    open(os.system('python last.py'))
+                #level.close()
+                #start_intro = True
+                #level += 1
+                #bg_scroll = 0
+                #world_data = reset_level()
+                #if level <= MAX_LEVEL:
+                open(os.system('python final.py'))
 
         else:
             screen_scroll = 0
