@@ -24,7 +24,7 @@ rows = 20
 max_cols = 150
 tile_size = screen_height // rows
 tile_types = 22
-level = 0
+level = 6
 current_tile = 0
 
 

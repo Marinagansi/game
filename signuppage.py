@@ -23,7 +23,7 @@ def play():
 con= mysql.connector.connect(
                     host='127.0.0.1',
                     user='root',
-                    password='Gansi@974111',
+                    password='aayush',
                     port=3306,
                     database='login')
 
@@ -134,26 +134,32 @@ def signpage():
     Password=StringVar()
     username=StringVar()
     cpass=StringVar()
-    lname = Entry(root, bd=8, width=21, textvariable=Lname,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
+    lname = Entry(root, bd=8, width=21, textvariable=Lname,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273',
+                  fg='white')
     lname.place(x=350, y=217)
 
-    username = Entry(root, bd=8, width=21,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
+    username = Entry(root, bd=8, width=21,textvariable=username, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273',
+                     fg='white')
     username.place(x=350, y=290)
 
-    Email = Entry(root, bd=8, width=21, textvariable=Email,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
+    Email = Entry(root, bd=8, width=21, textvariable=Email,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273',
+                  fg='white')
     Email.place(x=350, y=360)
 
 
 
 
-    fname = Entry(root, bd=8, width=21,textvariable=Name, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='turquoise3')
+    fname = Entry(root, bd=8, width=21,textvariable=Name, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273',
+                  fg='turquoise3')
     fname.place(x=350, y=140)
 
 
-    password = Entry(root, bd=8, width=21, textvariable=Password,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
+    password = Entry(root, bd=8, width=21, textvariable=Password,relief=FLAT, font=('arial', 14, 'bold'), bg='#385273',
+                     fg='white')
     password.place(x=350, y=435)
 
-    c_password = Entry(root, bd=8, width=21,textvariable=cpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273', fg='white')
+    c_password = Entry(root, bd=8, width=21,textvariable=cpass, relief=FLAT, font=('arial', 14, 'bold'), bg='#385273',
+                       fg='white')
     c_password.place(x=350, y=500)
 
     sub_btn = Button(root, image=submit_img, borderwidth=0, command=lambda: [play(),  insert_value()],
