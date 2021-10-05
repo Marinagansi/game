@@ -546,7 +546,7 @@ class Bullet(pygame.sprite.Sprite):
         for enemy in enemy_group:
             if pygame.sprite.spritecollide(enemy, bullet_group, False):
                 if enemy.alive:
-                    enemy.health -= 25
+                    enemy.health -= 35
                     self.kill()
 
 
@@ -742,6 +742,9 @@ while run:
         # creating score
         draw_text(f'HIGHSCORE: {high_score}', font, WHITE, 10, 120)
 
+        #level
+        draw_text('LEVEL: 5', font, RED, 850, 30)
+
         player.update()
         player.draw()
 
@@ -806,12 +809,13 @@ while run:
 
             # check if completed the level
             if level_complete:
-                start_intro = True
-                level += 1
-                bg_scroll = 0
-                world_data = reset_level()
-                if level <= MAX_LEVEL:
-                    open(os.system('python level6.py'))
+                pygame.quit()
+                #start_intro = True
+                #level += 1
+                #bg_scroll = 0
+                #world_data = reset_level()
+                #if level <= MAX_LEVEL:
+                open(os.system('python level6.py'))
   #
         else:
             screen_scroll = 0

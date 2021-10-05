@@ -738,6 +738,9 @@ while run:
         # creating score
         draw_text(f'HIGHSCORE: {high_score}', font, WHITE, 10, 120)
 
+        #level
+        draw_text('LEVEL: 6', font, RED, 850, 30)
+
         player.update()
         player.draw()
 
@@ -801,12 +804,13 @@ while run:
 
             # check if completed the level
             if level_complete:
-                start_intro = True
-                level += 1
-                bg_scroll = 0
-                world_data = reset_level()
-                if level <= MAX_LEVEL:
-                    open(os.system('python level7.py'))
+                pygame.quit()
+                #start_intro = True
+                #level += 1
+                #bg_scroll = 0
+                #world_data = reset_level()
+                #if level <= MAX_LEVEL:
+                open(os.system('python level7.py'))
 
         else:
             screen_scroll = 0

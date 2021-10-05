@@ -756,6 +756,7 @@ while run:
                     file.write(str(high_score))
             # check if completed the level
             if level_complete:
+                pygame.quit()
                 #level.close()
                 #start_intro = True
                 #level += 1
