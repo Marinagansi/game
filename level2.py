@@ -476,7 +476,7 @@ class ItemBox(pygame.sprite.Sprite):
             elif self.item_type == 'Grenade':
                 player.grenades += 3
             elif self.item_type == 'Coin':
-                player.score += 1.5
+                player.score += 1
 
             # delete the item box
             self.kill()
